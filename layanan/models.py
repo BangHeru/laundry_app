@@ -16,7 +16,7 @@ class Layanan(models.Model):
 
     nama = models.CharField(max_length=100)
     satuan = models.CharField(max_length=3, choices=SATUAN, default='Kg')
-    biaya = models.IntegerField(validators=[MinValueValidator(0)], default=0)
+    biaya = models.PositiveIntegerField(validators=[MinValueValidator(0)], default=0)
     status = models.CharField(max_length=1, choices=STATUS, default='A')
 
 

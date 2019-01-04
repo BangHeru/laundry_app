@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # my app list
     'parfum',
     'layanan',
+    'pelanggan',
 
     'django.contrib.admin',
     'django.contrib.auth',
