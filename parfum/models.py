@@ -13,3 +13,6 @@ class Parfum(models.Model):
     status = models.CharField(max_length=1, choices=STATUS)
 
     
+    def __str__(self):
+        """Unicode representation of Layanan."""
+        return self.nama

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # my app list
     'parfum',
+    'layanan',
 
     'django.contrib.admin',
     'django.contrib.auth',
