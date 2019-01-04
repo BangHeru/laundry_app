@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'parfum',
     'layanan',
     'pelanggan',
+    'order',
 
     'django.contrib.admin',
     'django.contrib.auth',
