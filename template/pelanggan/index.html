@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Webslesson Tutorial | Search HTML Table Data by using JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+
+    <style>
+        #result {
+            position: absolute;
+            width: 100%;
+            max-width:870px;
+            cursor: pointer;
+            overflow-y: auto;
+            max-height: 400px;
+            box-sizing: border-box;
+            z-index: 1001;
+            }
+        .link-class:hover{
+            background-color:#f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <br /><br />
+    <div class="container" style="width:900px;">
+        <h2 align="center">Cari data pelanggan</h2>
+         <br /><br />
+        
+         {% csrf_token %}
+        <div class="input-group mb-3">
+            <input type="hidden" id="kode" name="kode">
+            <input type="text" name="search" id="search" class="form-control" 
+                placeholder="Nama pelanggan" 
+                aria-label="Nama pelanggan"
+                a ria-describedby="button-addon2"\>
+            <div class="input-group-append">
+                <a href='#' class="btn btn-success" type="button" id="button-addon2">Tambah Data</a>
+            </div>
+        </div>
+ 
+        <ul class="list-group" id="result"></ul>
+        <br />
+    </div>
+
+    
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            cache: false
+        });
+    });
+
+
+    $(function () {
+        $('#search').keyup(function () {
+            $('#result').html('');
+            $('#kode').val('');
+            $("#result").show();
+
+            if (search === '') {
+                $('#result').hide();
+                $('#result').html('');
+            } else {
+                $('#result').show();
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/pelanggan/cari/",
+                dataType: 'text',
+
+                data: {
+                    'search': $('#search').val(),
+                    'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
+                },
+                success: hasilCari
+
+            });
+        });
+
+        $('#result').on('click', 'li', function () {
+            var click_text = $(this).text().split('|');
+            $('#search').val($.trim(click_text[1]));
+            $('#kode').val($.trim(click_text[0]));
+            $("#result").html('');
+            $("#result").hide();
+        });
+
+    });
+
+    function hasilCari(data, textStatus, xhr) {
+        $.each($.parseJSON(data), function (key, value) {
+            $('#result').append('<li class="list-group-item link-class"> ' +
+                value.pk + ' | ' + value.fields.nama + ' | ' + value.fields.telepon +
+                ' | ' + value.fields.alamat + '</li>');
+
+        });
+    }
+
+</script>

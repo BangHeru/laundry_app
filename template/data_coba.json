@@ -1,0 +1,12 @@
+[
+    {
+        "model": "pelanggan.pelanggan", 
+        "pk": 7, 
+        "fields": 
+        {
+            "nama": "Resi", 
+            "telepon": "085398796785", 
+            "alamat": "Kala Sigo"
+        }
+    }
+]

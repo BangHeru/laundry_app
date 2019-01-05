@@ -1,0 +1,44 @@
+[
+    {
+       "id" : "1",
+       "nama" : "Jamal",
+       "telepon" : "085260708090",
+       "alamat" : "Nunang"
+    },
+    {
+        "id" : "2",
+        "nama" : "Mona",
+        "telepon" : "087798976524",
+        "alamat" : "Sengeda"
+     },
+     {
+        "id" : "3",
+        "nama" : "Teguh",
+        "telepon" : "085256437892",
+        "alamat" : "Kemili"
+     },
+     {
+        "id" : "4",
+        "nama" : "Santi",
+        "telepon" : "08886654231",
+        "alamat" : "Kala Pasir"
+     },
+     {
+        "id" : "5",
+        "nama" : "Piko",
+        "telepon" : "085698347821",
+        "alamat" : "Kebayakan"
+     },
+     {
+        "id" : "6",
+        "nama" : "Desi",
+        "telepon" : "082354567686",
+        "alamat" : "Takengon"
+     },
+     {
+        "id" : "7",
+        "nama" : "Resi",
+        "telepon" : "085398796785",
+        "alamat" : "Kala Sigo"
+     }
+]
