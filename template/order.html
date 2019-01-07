@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container bg-light p-3 mx-auto">
+        <h1 class="text-center">HEPI LAUNDRY</h1>
+        <hr>
+        <form >
+            <div class="border border-primary rounded d-block p-3">
+                <div class="w-50 d-inline float-left ">
+                    <div class="float-left ml-3 mr-3">
+                        <label for="nama" class="d-block">Nama</label>
+                        <label for="alamat" class="d-block ">Alamat</label>
+                        <label for="telepon" class="d-block ">Telepon</label>
+                    </div>
+                    <div form-group mx-sm-3 mb-2>
+                        <input type="text" name="name" id="nama" class="d-block m-1 ">
+                        <input type="text" name="alamat" id="alamat" class="d-block m-1 ">
+                        <input type="text" name="telepon" id="telepon" class="d-block m-1 ">
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="float-left ml-3 mr-3">
+                        <label for="noOrder" class="d-block">Nomor Order</label>
+                        <label for="tglTerima" class="d-block">Tgl Terima</label>
+                        <label for="tglSelesai" class="d-block ">Tgl Selesai</label>
+                        <label for="layanan" class="d-block ">Layanan</label>
+                    </div>
+                    <div form-group mx-sm-3 mb-2>
+                        <input type="text" name="noOrder" id="noOrder" class="d-block m-1 ">
+                        <input type="text" name="tglTerima" id="tglTerima" class="d-block m-1 ">
+                        <input type="text" name="tglSelesai" id="tglSelesai" class="d-block m-1 ">
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="layanan" id="biasa" value="biasa"
+                                checked>
+                            <label class="form-check-label" for="biasa">Biasa</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="layanan" id="express" value="express">
+                            <label class="form-check-label" for="express">Express</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="border border-primary rounded d-block p-3">
+                    <table class="table table-hover">
+                            <thead>
+                              <tr class="text-center">
+                                <th scope="col">Jumlah</th>
+                                <th scope="col" class="w-50">Nama Barang</th>
+                                <th scope="col" class="w-25">Harga @</th>
+                                <th scope="col" class="w-25">Total (Rp.)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><input type="text" name="vol-BedJumbo" id="volBedJumbo" class="form-control text-center vol sat"></th>
+                                <td><label class="form-check-label" >Bedcover Jumbo</label></td>
+                                <td><input type="text" name="hrgBedJumbo" id="hrgBedJumbo" class="form-control text-right" disabled value="30.000"></td>
+                                <td><input type="text" name="ttlBedJumbo" id="ttlBedJumbo" class="form-control text-right total" disabled value="0"></td>
+                              </tr>
+                              <tr>
+                                    <th scope="row"><input type="text" name="vol-BedTebal" id="volBedTebal" class="form-control text-center vol sat"></th>
+                                    <td><label class="form-check-label" >Bedcover Tebal</label></td>
+                                    <td><input type="text" name="hrgBedTebal" id="hrgBedTebal" class="form-control text-right" disabled value="25.000"></td>
+                                    <td><input type="text" name="ttlBedTebal" id="ttlBedTebal" class="form-control text-right total" disabled value="0"></td>
+                              </tr>
+                              <tr>
+                                    <th scope="row"><input type="text" name="vol-BedTipis" id="volBedTipis" class="form-control text-center vol"></th>
+                                    <td><label class="form-check-label" >Bedcover Tipis</label></td>
+                                    <td><input type="text" name="hrgBedTipis" id="hrgBedTipis" class="form-control text-right" disabled value="20.000"></td>
+                                    <td><input type="text" name="ttlBedTipis" id="ttlBedTipis" class="form-control text-right total" disabled value="0"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                <textarea name="result" id="result" cols="30" rows="10"></textarea>
+                <input type="button" value="Kirim" id="kirim">
+                
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+
+
+        <script>
+                $(document).ready(function () {
+                    $.ajaxSetup({
+                        cache: false
+                    });
+                });
+            
+            
+                $(function () {
+                    var jumlahTotal = 0;
+                    $('.vol').keyup(function () {
+                        var nama = String($(this).prop("name")).split('-');
+                        // nama = nama.split('-');
+
+                        var volume = $(this).val();
+                        if(volume.search(',') != -1) {
+                            volume = volume.replace(',','.');
+                        }
+                        
+                        var namaSatuan = 'hrg' + nama[1];
+                        var namaTotal = 'ttl' + nama[1];
+                        var satuan = $('#'+namaSatuan).val();
+                      
+                        satuan = satuan.replace('.','');
+                        var jumlah = volume * satuan
+                        
+                        $('#'+namaTotal).val(jumlah.toLocaleString());
+                        // console.log(jumlah);
+                        hitungTotal();
+                        jumlahBarang();
+    
+                    });
+
+
+                    $('#kirim').click(function(){
+                        // console.log($('#result').text(JSON.stringify($('form').serializeObject())));
+                        // $('#result').text(JSON.stringify($('input').serializeObject()));
+                        // return true;
+                        data = {};
+                        data['nama'] = $('#nama').val();
+                        data['alamat'] = $('#alamat').val();
+                        data['telepon'] = $('#telepon').val();
+                        // $('.total').each(function(){
+                        //     data['item'][$(this).index] = $(this).val().replace('.','');
+                            
+                        // });
+                        console.log(data);
+                    });
+                });
+                
+
+
+        function hitungTotal() {
+
+            var jumlahTotal = 0;
+
+            $('.total').each(function(){
+                total = $(this).val().replace('.','');
+                jumlahTotal += Number(total);
+                
+            });
+            
+            $('h1').html(jumlahTotal.toLocaleString());
+            
+        }
+
+
+        function jumlahBarang() {
+
+            var jumlahBarang = 0;
+
+            $('.sat').each(function(){
+                total = $(this).val().replace('.','');
+                jumlahBarang += Number(total);
+
+            });
+            console.log(jumlahBarang.toLocaleString());;
+
+        }
+
+
+        function buatJsonData(){
+            data = [];
+
+            
+        }
+            
+            </script>
+
+</body>
+
+</html>
