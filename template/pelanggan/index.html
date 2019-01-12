@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Webslesson Tutorial | Search HTML Table Data by using JQuery</title>
+    <title>Order</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -24,34 +24,83 @@
         .link-class:hover{
             background-color:#f1f1f1;
         }
+
+        .hide {
+            display: none;
+        }
+
     </style>
 </head>
 
 <body>
+    {% if layanan %}
+   
+        <select name="layanan" id="layanan">
+            {% for jenis in layanan %}
+
+                <option value={{jenis.pk}} >{{jenis.nama}} </option>
+
+            {% endfor %}
+        </select>
+
+   
+    {% endif %}
+
     <br /><br />
     <div class="container" style="width:900px;">
         <h2 align="center">Cari data pelanggan</h2>
-         <br /><br />
-        
-         {% csrf_token %}
+        <br /><br />
+
+        {% csrf_token %}
         <div class="input-group mb-3">
             <input type="hidden" id="kode" name="kode">
-            <input type="text" name="search" id="search" class="form-control" 
-                placeholder="Nama pelanggan" 
-                aria-label="Nama pelanggan"
-                a ria-describedby="button-addon2"\>
+            <input type="text" name="search" id="search" class="form-control" placeholder="Nama pelanggan" aria-label="Nama pelanggan"
+                a ria-describedby="button-addon2" \>
+            <span>&nbsp; </span>
             <div class="input-group-append">
-                <a href='#' class="btn btn-success" type="button" id="button-addon2">Tambah Data</a>
+                <a class="btn btn-success" type="button" id="tambah" name="tambah">Tambah Data</a>
             </div>
         </div>
- 
+
         <ul class="list-group" id="result"></ul>
         <br />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
-    
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
@@ -74,25 +123,51 @@
             $('#kode').val('');
             $("#result").show();
 
-            if (search === '') {
+            if ($('#search').val() === '') {
                 $('#result').hide();
                 $('#result').html('');
             } else {
                 $('#result').show();
             }
 
+            if ($('#search').val().length > 2) {
+                $.ajax({
+                    type: "POST",
+                    url: "/pelanggan/cari/",
+                    dataType: 'text',
+
+                    data: {
+                        'search': $('#search').val(),
+                        'pesan': 'pesan suara',
+                        'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
+                    },
+                    success: hasilCari
+
+                });
+            }
+
+           
+
+        });
+
+        $('#layanan').change(function(){
+            pk = $(this).val();
+            console.log('layanan dipilih, PK : ' + pk);
             $.ajax({
-                type: "POST",
-                url: "/pelanggan/cari/",
-                dataType: 'text',
+                    type: "POST",
+                    url: "/layanan/cari/",
+                    dataType: 'text',
+                    data: {
+                        'pk': pk,
+                        'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
+                    },
+                    success: function(data, textStatus, xhr){
+                        $.each($.parseJSON(data), function (key, value) {
+                            console.log(value.fields.biaya);
+                        });
+                    }
 
-                data: {
-                    'search': $('#search').val(),
-                    'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
-                },
-                success: hasilCari
-
-            });
+                });
         });
 
         $('#result').on('click', 'li', function () {
@@ -103,15 +178,38 @@
             $("#result").hide();
         });
 
+
+        $('#tambah').click(function () {
+            // var isi = $('tbody').val();
+            var nama = $('#search').val();
+            var kode = $('#kode').val();
+            $('tbody').append('<tr> ' +
+                '<th scope="row">4</th>' +
+                '<td>' + nama + '</td>' +
+                '<td>' + kode + '</td>' +
+                '<td><span><input type="button" class="hapus" value="X" ></span></td>' +
+                '</tr>'
+            );
+            $('#search').val('');
+
+        });
+
+
+        $("tbody").on("click", ".hapus", function (e) {
+            e.preventDefault();
+            $(this).parents("tr").remove();
+            return false;
+        });
+
+
     });
 
     function hasilCari(data, textStatus, xhr) {
         $.each($.parseJSON(data), function (key, value) {
-            $('#result').append('<li class="list-group-item link-class"> ' +
-                value.pk + ' | ' + value.fields.nama + ' | ' + value.fields.telepon +
+            $('#result').append('<li class="list-group-item link-class"> <span class="hide">' +
+                value.pk + ' | </span>' + value.fields.nama + ' | ' + value.fields.telepon +
                 ' | ' + value.fields.alamat + '</li>');
 
         });
     }
-
 </script>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container bg-light p-3 mx-auto">
+        <h1 class="text-center">HEPI LAUNDRY</h1>
+        <hr>
+        {% csrf_token %}
+        <form>
+
+            <div class="border border-primary rounded d-block p-3">
+                <div class="d-inline float-left col-6">
+                    <div class="float-left ">
+                        <label for="nama" class="d-block">Nama</label>
+                        <label for="alamat" class="d-block ">Alamat</label>
+                        <label for="telepon" class="d-block ">Telepon</label>
+                    </div>
+                    <div form-group mx-sm-3 mb-2>
+                        <input type="text" name="name" id="nama" class="d-block m-1 ">
+                        <input type="text" name="alamat" id="alamat" class="d-block m-1 ">
+                        <input type="text" name="telepon" id="telepon" class="d-block m-1 ">
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="float-left">
+                        <label for="noOrder" class="d-block">Nomor Order</label>
+                        <label for="tglTerima" class="d-block">Tgl Terima</label>
+                        <label for="tglSelesai" class="d-block ">Tgl Selesai</label>
+                        <label for="layanan" class="d-block ">Layanan</label>
+                    </div>
+                    <div form-group mx-sm-3 mb-2>
+                        <input type="text" name="noOrder" id="noOrder" class="d-block m-1 ">
+                        <input type="text" name="tglTerima" id="tglTerima" class="d-block m-1 ">
+                        <input type="text" name="tglSelesai" id="tglSelesai" class="d-block m-1 ">
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="layanan" id="biasa" value="biasa"
+                                checked>
+                            <label class="form-check-label" for="biasa">Biasa</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="layanan" id="express" value="express">
+                            <label class="form-check-label" for="express">Express</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="border border-primary rounded d-block p-3">
+
+                <div class="row text-center mb-1">
+                    <div class="col">
+                        Jml / Berat
+                    </div>
+                    <div class="col-sm-4">
+                        Jenis Layanan
+                    </div>
+                    <div class="col-sm-4">
+                        Keterangan
+                    </div>
+                    <div class="col">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <input type="text" name="volume" id="volume" class="form-control text-center">
+                    </div>
+                    <div class="col-sm-4">
+                        <select name="layanan" id="layanan" class="form-control">
+                            <option value="0">Pilih Layanan </option>
+                            {% for jenis in layanan %}
+
+                            <option value={{jenis.pk}}>{{jenis.nama}} </option>
+
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <textarea name="keterangan" id="keterangan" cols="30" class="form-control"></textarea>
+                    </div>
+                    <div class="col">
+                        <input class="btn btn-primary" type="button" value="Tambah" id="tambah">
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <div class="border border-primary rounded d-block p-3">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">Jumlah</th>
+                            <th scope="col" class="w-50">Nama Barang</th>
+                            <th scope="col" class="w-25">Harga @</th>
+                            <th scope="col" class="w-25">Total (Rp.)</th>
+                            <th scope="col" class="w-25">Keterangan</th>
+                            <th scope="col" ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                        </tr>
+                    <tfoot class="bg-warning">
+                        <tr>
+                            <td colspan=3>TOTAL BIAYA</td>
+                            <td colspan=3>Rp. 50.000</td>
+                        </tr>
+                    </tfoot>
+                    </tbody>
+                </table>
+
+                <div class="col text-right">
+                    <input class="btn btn-success" type="button" value="Bayar" id="bayar">
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                cache: false
+            });
+        });
+
+
+        $(function () {
+            let jumlahTotal = 0;
+
+            $('#tambah').click(function () {
+                
+                if(cekData()){
+                    ambilHarga();
+                }
+            });
+
+            $("tbody").on("click", ".hapus", function (e) {
+            e.preventDefault();
+            $(this).parents("tr").remove();
+            return false;
+        });
+        
+        });
+
+
+        
+
+        function insertData(pk, nama_jasa, vol, harga, total){
+            
+            $('tbody').append('<tr> ' +
+                '<th scope="row">'+vol+'</th>' +
+                '<td>' + nama_jasa + '</td>' +
+                '<td>' + harga + '</td>' +
+                '<td>' + total + '</td>' +
+                '<td>' + $('#keterangan').val() + '</td>' +
+                '<td><span><input type="button" class="hapus" value="X" ></span></td>' +
+                '</tr>'
+            );
+        }
+
+        function hitungTotal(pk, nama_jasa, vol, harga) {
+            var total = vol * harga;
+            insertData(pk, nama_jasa, vol, harga, total);
+            return total;
+        }
+
+        function cekData() {
+            let vol = $('#volume').val();
+            let jasa = $('#layanan').val();
+
+            if (vol === '' | vol < 1) {
+                alert('Volume belum dimasukkan');
+                $('#volume').focus();
+                return false;
+            } else if (jasa < 1) {
+                alert('Jenis layanan belum dipilih');
+                $('#layanan').focus();
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        
+        
+
+        function ambilHarga() {
+            var harga;
+            var nama_jasa;
+            let vol = $('#volume').val();
+            let jasa = $('#layanan').val();
+            $.ajax({
+                type: "POST",
+                url: "/layanan/cari/",
+                dataType: 'text',
+                data: {
+                    'pk': jasa,
+                    'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
+                },
+                success: function (data) {
+                   harga = $.parseJSON(data)[0].fields.biaya;
+                   nama_jasa = $.parseJSON(data)[0].fields.nama;
+                   hitungTotal(jasa, nama_jasa, vol, harga);
+                   return true;
+
+                },
+                error: function () {
+                    console.log('error');
+                    return false;
+                }
+
+            });
+
+        }
+    </script>
+
+</body>
+
+</html>

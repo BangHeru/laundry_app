@@ -4,17 +4,21 @@ from django.core import serializers
 from django.db.models import Q
 
 from .models import Pelanggan
+from layanan.models import Layanan
 
 
 
 def home(request):
-    return render(request, 'pelanggan/index.html', { })
+    layanan = Layanan.objects.all()
+    
+    return render(request, 'pelanggan/index.html', {'layanan': layanan })
 
 
 
 def cari_pelanggan(request):
     if request.POST and request.is_ajax:
         kata_kunci = request.POST['search']
+        print(request.POST['pesan'])
     else:
         kata_kunci = ''
  
