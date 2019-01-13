@@ -28,4 +28,5 @@ def cari_layanan(request):
     data = serializers.serialize('json', list(data))
     
     return HttpResponse(data, content_type="application/json")
-  
+
+

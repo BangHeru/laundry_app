@@ -7,88 +7,82 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
-
+        body{
+            background-color: black;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container bg-light p-3 mx-auto">
+    <div class="container bg-light  mx-auto mt-5 p-2 rounded">
         <h1 class="text-center">HEPI LAUNDRY</h1>
         <hr>
         {% csrf_token %}
         <form>
-
-            <div class="border border-primary rounded d-block p-3">
-                <div class="d-inline float-left col-6">
-                    <div class="float-left ">
-                        <label for="nama" class="d-block">Nama</label>
-                        <label for="alamat" class="d-block ">Alamat</label>
-                        <label for="telepon" class="d-block ">Telepon</label>
-                    </div>
-                    <div form-group mx-sm-3 mb-2>
-                        <input type="text" name="name" id="nama" class="d-block m-1 ">
-                        <input type="text" name="alamat" id="alamat" class="d-block m-1 ">
-                        <input type="text" name="telepon" id="telepon" class="d-block m-1 ">
-                    </div>
-
-                </div>
-
-                <div>
-                    <div class="float-left">
-                        <label for="noOrder" class="d-block">Nomor Order</label>
-                        <label for="tglTerima" class="d-block">Tgl Terima</label>
-                        <label for="tglSelesai" class="d-block ">Tgl Selesai</label>
-                        <label for="layanan" class="d-block ">Layanan</label>
-                    </div>
-                    <div form-group mx-sm-3 mb-2>
-                        <input type="text" name="noOrder" id="noOrder" class="d-block m-1 ">
-                        <input type="text" name="tglTerima" id="tglTerima" class="d-block m-1 ">
-                        <input type="text" name="tglSelesai" id="tglSelesai" class="d-block m-1 ">
-
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="layanan" id="biasa" value="biasa"
-                                checked>
-                            <label class="form-check-label" for="biasa">Biasa</label>
+            <div class="border border-primary rounded mb-2 p-2">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <input type="text" name="name" id="nama" class="form-control" placeholder="Nama">
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="layanan" id="express" value="express">
-                            <label class="form-check-label" for="express">Express</label>
+                        <div class="form-group">
+                            <input type="text" name="alamat" id="alamat" class="form-control" placeholder="Alamat">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="telepon" id="telepon" class="form-control" placeholder="Telepon">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tglSelesai" id="tglSelesai" class="form-control" placeholder="Tanggal Selesai">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="layanan">Layanan : </label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input form-check-inline" type="radio" name="layanan" id="biasa"
+                                    value="biasa" checked>
+                                <label class="form-check-label" for="biasa">Biasa</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="layanan" id="express" value="express">
+                                <label class="form-check-label" for="express">Express</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <label for="jumTotal">Jumlah Total</label>
+                                <span name="jumTotal"><b> 58.000</b></span>
+                            </div>
+                            <div class="col">
+                                <input class="btn btn-primary" type="button" value="Bayar" id="bayar" name="bayar">
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
 
-            <br>
-
-            <div class="border border-primary rounded d-block p-3">
-
-                <div class="row text-center mb-1">
+            <div class="border border-primary rounded mb-2 p-2">
+                <div class="row text-center ">
                     <div class="col">
-                        Jml / Berat
+                        <label for="berat">Berat/Jumlah</label>
+                        <input type="text" name="berat" id="berat" class="form-control text-center" value=0>
+                        <input type="text" name="jumlah" id="jumlah" class="form-control text-center">
                     </div>
                     <div class="col-sm-4">
-                        Jenis Layanan
-                    </div>
-                    <div class="col-sm-4">
-                        Keterangan
-                    </div>
-                    <div class="col">
-
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <input type="text" name="volume" id="volume" class="form-control text-center">
-                    </div>
-                    <div class="col-sm-4">
+                        <label for="layanan">Jenis Layanan</label>
                         <select name="layanan" id="layanan" class="form-control">
                             <option value="0">Pilih Layanan </option>
                             {% for jenis in layanan %}
@@ -100,16 +94,16 @@
                         </select>
                     </div>
                     <div class="col-sm-4">
+                        <label for="keterangan">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" cols="30" class="form-control"></textarea>
                     </div>
                     <div class="col">
-                        <input class="btn btn-primary" type="button" value="Tambah" id="tambah">
+                        <label for="tambah">&nbsp;</label>
+                        <input class="btn btn-primary" type="button" value="Tambah" id="tambah" name="tambah">
                     </div>
                 </div>
-
             </div>
 
-            <br>
             <div class="border border-primary rounded d-block p-3">
                 <table class="table table-hover">
                     <thead>
@@ -119,26 +113,17 @@
                             <th scope="col" class="w-25">Harga @</th>
                             <th scope="col" class="w-25">Total (Rp.)</th>
                             <th scope="col" class="w-25">Keterangan</th>
-                            <th scope="col" ></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
 
                         </tr>
-                    <tfoot class="bg-warning">
-                        <tr>
-                            <td colspan=3>TOTAL BIAYA</td>
-                            <td colspan=3>Rp. 50.000</td>
-                        </tr>
-                    </tfoot>
+                    
                     </tbody>
                 </table>
-
-                <div class="col text-right">
-                    <input class="btn btn-success" type="button" value="Bayar" id="bayar">
-                </div>
-
+                <hr>
             </div>
         </form>
     </div>
@@ -162,32 +147,70 @@
             let jumlahTotal = 0;
 
             $('#tambah').click(function () {
-                
-                if(cekData()){
+
+                if (cekData()) {
                     ambilHarga();
+                    bersihkanData();
                 }
             });
 
             $("tbody").on("click", ".hapus", function (e) {
-            e.preventDefault();
-            $(this).parents("tr").remove();
-            return false;
+                e.preventDefault();
+                $(this).parents("tr").remove();
+                return false;
+            });
+
+            $('#berat').focus(function(){
+                $(this).select();
+            });
+
+            $('#berat').focusout(function(){
+                berat = $(this).val();
+                if($.isNumeric(berat)){
+                    return false;
+                }else{
+                    alert('Nilai harus berupa angka > 0');
+                    $(this).val('0');
+                    $(this).focus();
+                    $(this).select();
+                    return true;
+                }
+            });
+
+
+            $(" #tglSelesai").datepicker({
+                    format: 'dd/mm/yyyy',
+                    startDate: '-3d',
+                    minDate: 0,
+                    maxDate: +7
+                }
+
+            );
+
         });
-        
-        });
+
+        bersihkanData = () => {
+            $('#berat').val(0);
+            $('#layanan').val(0);
+            $('#keterangan').val('');
+            $('#berat').focus();
+        }
 
 
-        
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
 
-        function insertData(pk, nama_jasa, vol, harga, total){
-            
+        function insertData(pk, nama_jasa, vol, harga, total) {
+
             $('tbody').append('<tr> ' +
-                '<th scope="row">'+vol+'</th>' +
+                '<th scope="row">' + vol + '</th>' +
                 '<td>' + nama_jasa + '</td>' +
-                '<td>' + harga + '</td>' +
-                '<td>' + total + '</td>' +
+                '<td class="text-right">' + harga.toLocaleString() + '</td>' +
+                '<td class="text-right">' + total.toLocaleString() + '</td>' +
                 '<td>' + $('#keterangan').val() + '</td>' +
-                '<td><span><input type="button" class="hapus" value="X" ></span></td>' +
+                '<td><span><input type="button" class="hapus btn btn-danger btn-sm" ' +
+                'value="x" data-toggle="tooltip" data-placement="top" title="Hapus data" ></span></td>' +
                 '</tr>'
             );
         }
@@ -199,7 +222,7 @@
         }
 
         function cekData() {
-            let vol = $('#volume').val();
+            let vol = $('#berat').val();
             let jasa = $('#layanan').val();
 
             if (vol === '' | vol < 1) {
@@ -215,13 +238,13 @@
             }
         }
 
-        
-        
+
+
 
         function ambilHarga() {
             var harga;
             var nama_jasa;
-            let vol = $('#volume').val();
+            let vol = $('#berat').val();
             let jasa = $('#layanan').val();
             $.ajax({
                 type: "POST",
@@ -232,10 +255,10 @@
                     'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
                 },
                 success: function (data) {
-                   harga = $.parseJSON(data)[0].fields.biaya;
-                   nama_jasa = $.parseJSON(data)[0].fields.nama;
-                   hitungTotal(jasa, nama_jasa, vol, harga);
-                   return true;
+                    harga = $.parseJSON(data)[0].fields.biaya;
+                    nama_jasa = $.parseJSON(data)[0].fields.nama;
+                    hitungTotal(jasa, nama_jasa, vol, harga);
+                    return true;
 
                 },
                 error: function () {

@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.core import serializers
 from django.db.models import Q
+from django.http import JsonResponse
+
+import pprint
 
 from .models import Pelanggan
 from layanan.models import Layanan
